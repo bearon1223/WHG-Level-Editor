@@ -99,7 +99,15 @@ class player {
       enemyxi  = new float[19];
       enemyyi  = new float[19];
       enemyxi2 = new float[19];
-      
+
+      enemyxu  = new float[19];
+      enemyyu  = new float[19];
+      enemyyu2 = new float[19];
+
+      enemyxui  = new float[19];
+      enemyyui  = new float[19];
+      enemyyui2 = new float[19];
+
       play = false;
     }
 
@@ -204,5 +212,50 @@ class enemys {
     stroke(0, 0, 0);
     noStroke();
     ellipse(this.x, y, 15, 15);
+  }
+}
+
+class enemyu {
+  float speeds = 2, Sy, y, x, Dy, speed;
+  boolean i;
+  enemyu(float x, float y, float y0, boolean i) {
+    float speedr = 1;
+    this.Sy = (y * 25);
+    this.y = this.Sy;
+    this.x = (x * 25);
+    this.Dy = (y0 * 25);
+    this.i = i;
+    speeds = speedr;
+    if (i) {
+      this.speed = -speedr;
+    } else {
+      this.speed = speedr;
+    }
+  }
+
+  void move() {
+    if (!i) {
+      if (this.y > this.Dy) {
+        this.speed = -speeds;
+      }
+      if (this.y < this.Sy) {
+        this.speed = speeds;
+      }
+    } else if (i) {
+      if (this.y < this.Dy) {
+        this.speed = speeds;
+      }
+      if (this.y > this.Sy) {
+        this.speed = -speeds;
+      }
+    }
+    this.y += this.speed;
+  }
+
+  void render() {
+    fill(0, 0, 255);
+    stroke(0, 0, 0);
+    noStroke();
+    ellipse(x, this.y, 15, 15);
   }
 }
