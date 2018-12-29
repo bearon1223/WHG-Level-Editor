@@ -18,3 +18,16 @@ void checkpoint(float x, float y, float  sx, float sy) {
   noStroke();
   rect(x * 25, y * 25, sx * 25, sy * 25);
 };
+
+void end(float x, float y, float  sx, float sy) {
+  fill(255, 255, 119);
+  noStroke();
+  rect(x * 25, y * 25, sx * 25, sy * 25);
+};
+
+void lineG(float x, float y, float sx, float sy) {
+  fill(0, 0, 0);
+  stroke(0, 0, 0);
+  strokeWeight(2);
+  line(x * 25, y * 25, sx * 25, sy * 25);
+}
