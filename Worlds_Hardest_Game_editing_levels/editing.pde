@@ -52,6 +52,7 @@ class editor {
   }
 
   void render() {
+    setup = false;
     for (int i = 0; i <= clickedRC; i++) {
       fill(0, 187, 255);
       rectG(removecube2x[i], removecube2y[i], removecube2x2[i], removecube2y2[i]);
@@ -99,11 +100,43 @@ class editor {
       stroke(0);
       line(enemyxui[i] * 25, enemyyui2[i] * 25, enemyxui[i] * 25, enemyyui2[i] * 25);
     }
+    noStroke();
+    fill(0, 187, 255);
+    rect(0, 0, 25, 25);
     stroke(121, 0, 0);
     fill(255, 0, 0);
     rect(px * 25, py * 25, 15, 15);
     fill(0);
-    text(blockType, 10, 10);
+    if (blockType == 0) {
+      text("Remove Square", 10, 10);
+    }
+    if (blockType == 1) {
+      text("Checkpoint", 10, 10);
+    }
+    if (blockType == 2) {
+      text("End", 10, 10);
+    }
+    if (blockType == 3) {
+      text("Border", 10, 10);
+    }
+    if (blockType == 4) {
+      text("remove Square 2 Click", 10, 10);
+    }
+    if (blockType == 5) {
+      text("Enemy to the right", 10, 10);
+    }
+    if (blockType == 6) {
+      text("Player Start", 10, 10);
+    }
+    if (blockType == 7) {
+      text("Enemy to the left", 10, 10);
+    }
+    if (blockType == 8) {
+      text("Enemy going Down", 10, 10);
+    }
+    if (blockType == 9) {
+      text("Enemy going Up", 10, 10);
+    }
   }
 
   void user() {
@@ -491,6 +524,10 @@ class editor {
       eui18.render();
       eui19.move();
       eui19.render();
+
+      noStroke();
+      fill(0, 187, 255);
+      rect(0, 0, 25, 25);
 
       p.movement();
       p.collision();

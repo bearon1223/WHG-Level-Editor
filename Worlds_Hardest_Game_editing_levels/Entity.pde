@@ -53,6 +53,11 @@ class player {
     //  }
     //}
 
+    if ((a1 == color(0, 0, 255) || a2 == color(0, 0, 255) || a3 == color(0, 0, 255) || a4 == color(0, 0, 255)) || (a5 == color(0, 0, 255) || a6 == color(0, 0, 255) || a7 == color(0, 0, 255) || a8 == color(0, 0, 255))) {
+      this.x = px;
+      this.y = py;
+    }
+
     //if (a3 == color(0, 255, 119) || a2 == color(0, 255, 119) || a4 == color(0, 255, 119) || a1 == color(0, 255, 119)) {
     //  psx = this.x;
     //  psy = this.y;
@@ -69,6 +74,8 @@ class player {
     //}
 
     if (a1 == color(255, 255, 119) || a2 == color(255, 255, 119) || a3 == color(255, 255, 119) || a4 == color(255, 255, 119)) {
+      int arraySize = 1000;
+      play = false;
       removecubex  = new float[arraySize];
       removecubey  = new float[arraySize];
 
@@ -107,8 +114,6 @@ class player {
       enemyxui  = new float[19];
       enemyyui  = new float[19];
       enemyyui2 = new float[19];
-
-      play = false;
     }
 
     //if ((a1 == color(255, 255, 0) || a2 == color(255, 255, 0) || a3 == color(255, 255, 0) || a4 == color(255, 255, 0))) {
