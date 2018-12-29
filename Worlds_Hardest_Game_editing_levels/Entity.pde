@@ -68,9 +68,40 @@ class player {
     //  }
     //}
 
-    //if (a1 == color(0, 254, 119) || a2 == color(0, 254, 119) || a3 == color(0, 254, 119) || a4 == color(0, 254, 119)) {
-    //  win();
-    //}
+    if (a1 == color(255, 255, 119) || a2 == color(255, 255, 119) || a3 == color(255, 255, 119) || a4 == color(255, 255, 119)) {
+      removecubex  = new float[arraySize];
+      removecubey  = new float[arraySize];
+
+      checkpointx  = new float[arraySize];
+      checkpointy  = new float[arraySize];
+      checkpointx2 = new float[arraySize];
+      checkpointy2 = new float[arraySize];
+
+      endx  = new float[arraySize];
+      endy  = new float[arraySize];
+      endx2 = new float[arraySize];
+      endy2 = new float[arraySize];
+
+      linex  = new float[arraySize];
+      liney  = new float[arraySize];
+      linex2 = new float[arraySize];
+      liney2 = new float[arraySize];
+
+      removecube2x  = new float[arraySize];
+      removecube2y  = new float[arraySize];
+      removecube2x2 = new float[arraySize];
+      removecube2y2 = new float[arraySize];
+
+      enemyx  = new float[19];
+      enemyy  = new float[19];
+      enemyx2 = new float[19];
+
+      enemyxi  = new float[19];
+      enemyyi  = new float[19];
+      enemyxi2 = new float[19];
+      
+      play = false;
+    }
 
     //if ((a1 == color(255, 255, 0) || a2 == color(255, 255, 0) || a3 == color(255, 255, 0) || a4 == color(255, 255, 0))) {
     //  if (coinAmountPublic <= 0) {

@@ -26,9 +26,13 @@ float[] enemyx  = new float[19];
 float[] enemyy  = new float[19];
 float[] enemyx2 = new float[19];
 
+float[] enemyxi  = new float[19];
+float[] enemyyi  = new float[19];
+float[] enemyxi2 = new float[19];
+
 class editor {
   float blockType = 0;
-  int clickedR = 0, clickedC = 0, clickedE = 0, clickedB = 0, clickedRC = 0, clickedEN = 0;
+  int clickedR = 0, clickedC = 0, clickedE = 0, clickedB = 0, clickedRC = 0, clickedEN = 0, clickedENI = 0;
   int clickCheck = 0;
   boolean pressed = false, pressedC = false, setup = false;
   editor() {
@@ -67,6 +71,12 @@ class editor {
       ellipse(enemyx[i] * 25, enemyy[i] * 25, 15, 15);
       stroke(0);
       line(enemyx2[i] * 25, enemyy[i] * 25, enemyx2[i] * 25, enemyy[i] * 25);
+    }
+    for (int i = 0; i <= clickedENI; i++) {
+      fill(0, 0, 255);
+      ellipse(enemyxi[i] * 25, enemyyi[i] * 25, 15, 15);
+      stroke(0);
+      line(enemyxi2[i] * 25, enemyyi[i] * 25, enemyxi2[i] * 25, enemyyi[i] * 25);
     }
     stroke(121, 0, 0);
     fill(255, 0, 0);
@@ -158,6 +168,16 @@ class editor {
       px = mouseX / 25;
       py = mouseY / 25;
       pressedC = true;
+    } else if (clickCheck == 0 && !pressedC && mousePressed && blockType == 7) {
+      clickedENI++;
+      enemyxi[clickedENI] = float(mouseX / 25) + 0.5;
+      enemyyi[clickedENI] = float(mouseY / 25) + 0.5;
+      clickCheck = 1;
+      pressedC = true;
+    } else if (clickCheck == 1 && !pressedC && mousePressed && blockType == 7) {
+      enemyxi2[clickedENI] = float(mouseX / 25) + 0.5;
+      clickCheck = 0;
+      pressedC = true;
     } else if (!mousePressed && pressedC) {
       pressedC = false;
     }
@@ -185,6 +205,25 @@ class editor {
       e17 = new enemys(enemyx[16], enemyy[16], enemyx2[16], false);
       e18 = new enemys(enemyx[17], enemyy[17], enemyx2[17], false);
       e19 = new enemys(enemyx[18], enemyy[18], enemyx2[18], false);
+
+      ei   = new enemys(enemyxi[0], enemyyi[0], enemyxi2[0], true);
+      ei2  = new enemys(enemyxi[1], enemyyi[1], enemyxi2[1], true);
+      ei3  = new enemys(enemyxi[2], enemyyi[2], enemyxi2[2], true);
+      ei4  = new enemys(enemyxi[3], enemyyi[3], enemyxi2[3], true);
+      ei5  = new enemys(enemyxi[4], enemyyi[4], enemyxi2[4], true);
+      ei6  = new enemys(enemyxi[5], enemyyi[5], enemyxi2[5], true);
+      ei7  = new enemys(enemyxi[6], enemyyi[6], enemyxi2[6], true);
+      ei8  = new enemys(enemyxi[7], enemyyi[7], enemyxi2[7], true);
+      ei9  = new enemys(enemyxi[8], enemyyi[8], enemyxi2[8], true);
+      ei10 = new enemys(enemyxi[9], enemyyi[9], enemyxi2[9], true);
+      ei11 = new enemys(enemyxi[10], enemyyi[10], enemyxi2[10], true);
+      ei12 = new enemys(enemyxi[11], enemyyi[11], enemyxi2[11], true);
+      ei13 = new enemys(enemyxi[12], enemyyi[12], enemyxi2[12], true);
+      ei14 = new enemys(enemyxi[13], enemyyi[13], enemyxi2[13], true);
+      ei15 = new enemys(enemyxi[14], enemyyi[14], enemyxi2[14], true);
+      ei16 = new enemys(enemyxi[15], enemyyi[15], enemyxi2[15], true);
+      ei17 = new enemys(enemyxi[16], enemyyi[16], enemyxi2[16], true);
+      ei18 = new enemys(enemyxi[17], enemyyi[17], enemyxi2[17], true);
       setup = true;
     } else if (setup) {
       for (int i = 0; i <= clickedRC; i++) {
@@ -210,12 +249,6 @@ class editor {
         lineG(linex[i], liney[i], linex2[i], liney2[i]);
       }
 
-      for (int i = 0; i <= clickedEN; i++) {
-        fill(0, 0, 255);
-        ellipse(enemyx[i] * 25, enemyy[i] * 25, 15, 15);
-        stroke(0);
-        line(enemyx2[i] * 25, enemyy[i] * 25, enemyx2[i] * 25, enemyy[i] * 25);
-      }
       e.move();
       e.render();
       e1.move();
@@ -256,7 +289,46 @@ class editor {
       e18.render();
       e19.move();
       e19.render();
-      
+
+      ei.move();
+      ei.render();
+      ei2.move();
+      ei2.render();
+      ei3.move();
+      ei3.render();
+      ei4.move();
+      ei4.render();
+      ei5.move();
+      ei5.render();
+      ei6.move();
+      ei6.render();
+      ei7.move();
+      ei7.render();
+      ei8.move();
+      ei8.render();
+      ei9.move();
+      ei9.render();
+      ei10.move();
+      ei10.render();
+      ei11.move();
+      ei11.render();
+      ei12.move();
+      ei12.render();
+      ei13.move();
+      ei13.render();
+      ei14.move();
+      ei14.render();
+      ei15.move();
+      ei15.render();
+      ei16.move();
+      ei16.render();
+      ei17.move();
+      ei17.render();
+      ei18.move();
+      ei18.render();
+      ei19.move();
+      ei19.render();
+
       p.movement();
       p.collision();
       p.render();

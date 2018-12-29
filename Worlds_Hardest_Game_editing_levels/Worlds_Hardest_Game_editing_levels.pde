@@ -22,7 +22,7 @@ void draw () {
   if (!play) {
     edit.user();
     edit.render();
-    if (keyCode == UP) {
+    if (key == 'r') {
       play = true;
     }
   } else {
