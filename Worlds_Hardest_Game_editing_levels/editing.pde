@@ -1,46 +1,13 @@
-int arraySize = 1000;
-float[] removecubex  = new float[arraySize];
-float[] removecubey  = new float[arraySize];
+float currentSpacing = 0;
 
-float[] checkpointx  = new float[arraySize];
-float[] checkpointy  = new float[arraySize];
-float[] checkpointx2 = new float[arraySize];
-float[] checkpointy2 = new float[arraySize];
-
-float[] endx  = new float[arraySize];
-float[] endy  = new float[arraySize];
-float[] endx2 = new float[arraySize];
-float[] endy2 = new float[arraySize];
-
-float[] linex  = new float[arraySize];
-float[] liney  = new float[arraySize];
-float[] linex2 = new float[arraySize];
-float[] liney2 = new float[arraySize];
-
-float[] removecube2x  = new float[arraySize];
-float[] removecube2y  = new float[arraySize];
-float[] removecube2x2 = new float[arraySize];
-float[] removecube2y2 = new float[arraySize];
-
-float[] enemyx  = new float[19];
-float[] enemyy  = new float[19];
-float[] enemyx2 = new float[19];
-
-float[] enemyxi  = new float[19];
-float[] enemyyi  = new float[19];
-float[] enemyxi2 = new float[19];
-
-float[] enemyxu  = new float[19];
-float[] enemyyu  = new float[19];
-float[] enemyyu2 = new float[19];
-
-float[] enemyxui  = new float[19];
-float[] enemyyui  = new float[19];
-float[] enemyyui2 = new float[19];
+void mouseWheel(MouseEvent event) {
+  float e = event.getCount();
+  currentSpacing += constrain(e, -1, 1);
+}
 
 class editor {
   float blockType = 0;
-  int clickedR = 0, clickedC = 0, clickedE = 0, clickedB = 0, clickedRC = 0;
+  int clickedR = 0, clickedC = 0, clickedE = 0, clickedB = 0, clickedRC = 0, clickedRE = 0;
   int clickedEN = 0, clickedENI = 0, clickedENU = 0, clickedENIU = 0;
   int clickCheck = 0;
   boolean pressed = false, pressedC = false, setup = false;
@@ -100,6 +67,17 @@ class editor {
       stroke(0);
       line(enemyxui[i] * 25, enemyyui2[i] * 25, enemyxui[i] * 25, enemyyui2[i] * 25);
     }
+
+    for (int i = 0; i <= clickedRE; i++) {
+      translate(enemyrx[i] * 25, enemyry[i] * 25);
+      for (int e = 0; e <= enemyry2[i] - enemyry[i]; e++) {
+        ellipse(enemyrsp[i] * e, 0, 15, 15);
+        ellipse(-enemyrsp[i] * e, 0, 15, 15);
+        ellipse(0, enemyrsp[i] * e, 15, 15);
+        ellipse(0, -enemyrsp[i] * e, 15, 15);
+      } 
+      translate(-(enemyrx[i] * 25), -(enemyry[i] * 25));
+    }
     noStroke();
     fill(0, 187, 255);
     rect(0, 0, 25, 25);
@@ -109,33 +87,28 @@ class editor {
     fill(0);
     if (blockType == 0) {
       text("Remove Square", 10, 10);
-    }
-    if (blockType == 1) {
+    } else if (blockType == 1) {
       text("Checkpoint", 10, 10);
-    }
-    if (blockType == 2) {
+    } else if (blockType == 2) {
       text("End", 10, 10);
-    }
-    if (blockType == 3) {
+    } else if (blockType == 3) {
       text("Border", 10, 10);
-    }
-    if (blockType == 4) {
+    } else if (blockType == 4) {
       text("remove Square 2 Click", 10, 10);
-    }
-    if (blockType == 5) {
+    } else if (blockType == 5) {
       text("Enemy to the right", 10, 10);
-    }
-    if (blockType == 6) {
+    } else if (blockType == 6) {
       text("Player Start", 10, 10);
-    }
-    if (blockType == 7) {
+    } else if (blockType == 7) {
       text("Enemy to the left", 10, 10);
-    }
-    if (blockType == 8) {
+    } else if (blockType == 8) {
       text("Enemy going Down", 10, 10);
-    }
-    if (blockType == 9) {
+    } else if (blockType == 9) {
       text("Enemy going Up", 10, 10);
+    } else if (blockType == 10) {
+      text("Pathed Enemy", 10, 10);
+    } else {
+      text("Error Type not found Type Chosen: " + blockType, 10, 10);
     }
   }
 
@@ -143,7 +116,7 @@ class editor {
     if (keyCode == LEFT && !pressed && keyPressed && blockType > 0) {
       blockType--;
       pressed = true;
-    } else if (keyCode == RIGHT && !pressed && keyPressed && blockType < 10) {
+    } else if (keyCode == RIGHT && !pressed && keyPressed && blockType < 15) {
       blockType++;
       pressed = true;
     } else if (!keyPressed && pressed) {
@@ -219,8 +192,8 @@ class editor {
       clickCheck = 0;
       pressedC = true;
     } else if (!pressedC && mousePressed && blockType == 6) {
-      px = mouseX / 25;
-      py = mouseY / 25;
+      px = mouseX / 25 + 0.2;
+      py = mouseY / 25 + 0.2;
       pressedC = true;
     } else if (clickCheck == 0 && !pressedC && mousePressed && blockType == 7) {
       clickedENI++;
@@ -252,7 +225,36 @@ class editor {
       enemyyui2[clickedENIU] = float(mouseY / 25) + 0.5;
       clickCheck = 0;
       pressedC = true;
-    } else if (!mousePressed && pressedC) {
+    }/* else if (clickCheck == 0 && !pressedC && mousePressed && blockType == 16) {
+     clickedRE++;
+     enemyrx[clickedRE] = float(mouseX / 25) + 0.5;
+     enemyry[clickedRE] = float(mouseY / 25) + 0.5;
+     clickCheck = 1;
+     pressedC = true;
+     } else if (clickCheck == 1 && !pressedC && mousePressed && blockType == 16) {
+     enemyry2[clickedRE] = float(mouseY / 25) + 0.5;
+     currentSpacing = 0;
+     clickCheck = 2;
+     pressedC = true;
+     } else if (clickCheck == 2 && !pressedC && mousePressed && blockType == 16) {
+     enemyrsp[clickedRE] = currentSpacing;
+     clickCheck = 0;
+     pressedC = true;
+     //}*/
+    else if (clickCheck == 0 && !pressedC && mousePressed && blockType == 10) {
+      // clickedRC++;
+      // removecube2x[clickedRC] = float(mouseX / 25);
+      // removecube2y[clickedRC] = float(mouseY / 25);
+      // removecube2x2[clickedRC] = 1;
+      // removecube2y2[clickedRC] = 1;
+      // clickCheck = 1;
+      // pressedC = true;
+      // } else if (clickCheck == 1 && !pressedC && mousePressed && blockType == 10) {÷
+      // removecube2x2[clickedRC] = ((mouseX) / 25 - removecube2x[clickedRC]) + 1;
+      // removecube2y2[clickedRC] = ((mouseY) / 25 - removecube2y[clickedRC]) + 1;
+      // clickCheck = 0;
+      // pressedC = true;
+       } else if (!mousePressed && pressedC) {
       pressedC = false;
     }
   }
@@ -524,6 +526,27 @@ class editor {
       eui18.render();
       eui19.move();
       eui19.render();
+
+      er.normal();
+      er1.normal();
+      er2.normal();
+      er3.normal();
+      er4.normal();
+      er5.normal();
+      er6.normal();
+      er7.normal();
+      er8.normal();
+      er9.normal();
+      er10.normal();
+      er11.normal();
+      er12.normal();
+      er13.normal();
+      er14.normal();
+      er15.normal();
+      er16.normal();
+      er17.normal();
+      er18.normal();
+      er19.normal();
 
       noStroke();
       fill(0, 187, 255);

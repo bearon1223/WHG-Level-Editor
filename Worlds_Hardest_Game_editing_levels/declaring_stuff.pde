@@ -1,3 +1,49 @@
+int arraySize = 1000;
+
+float[] removecubex  = new float[arraySize];
+float[] removecubey  = new float[arraySize];
+
+float[] checkpointx  = new float[arraySize];
+float[] checkpointy  = new float[arraySize];
+float[] checkpointx2 = new float[arraySize];
+float[] checkpointy2 = new float[arraySize];
+
+float[] endx  = new float[arraySize];
+float[] endy  = new float[arraySize];
+float[] endx2 = new float[arraySize];
+float[] endy2 = new float[arraySize];
+
+float[] linex  = new float[arraySize];
+float[] liney  = new float[arraySize];
+float[] linex2 = new float[arraySize];
+float[] liney2 = new float[arraySize];
+
+float[] removecube2x  = new float[arraySize];
+float[] removecube2y  = new float[arraySize];
+float[] removecube2x2 = new float[arraySize];
+float[] removecube2y2 = new float[arraySize];
+
+float[] enemyx  = new float[19];
+float[] enemyy  = new float[19];
+float[] enemyx2 = new float[19];
+
+float[] enemyxi  = new float[19];
+float[] enemyyi  = new float[19];
+float[] enemyxi2 = new float[19];
+
+float[] enemyxu  = new float[19];
+float[] enemyyu  = new float[19];
+float[] enemyyu2 = new float[19];
+
+float[] enemyxui  = new float[19];
+float[] enemyyui  = new float[19];
+float[] enemyyui2 = new float[19];
+
+float[] enemyrx  = new float[19];
+float[] enemyry  = new float[19];
+float[] enemyry2 = new float[19];
+float[] enemyrsp = new float[19];
+
 enemys e  = new enemys(0, 0, 0, false);
 enemys e1 = new enemys(0, 0, 0, false);
 enemys e2 = new enemys(0, 0, 0, false);
@@ -83,3 +129,24 @@ enemyu eui16 = new enemyu(0, 0, 0, false);
 enemyu eui17 = new enemyu(0, 0, 0, false);
 enemyu eui18 = new enemyu(0, 0, 0, false);
 enemyu eui19 = new enemyu(0, 0, 0, false);
+
+rotatingEnemys er  = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er1 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er2 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er3 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er4 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er5 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er6 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er7 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er8 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er9 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er10 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er11 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er12 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er13 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er14 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er15 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er16 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er17 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er18 = new rotatingEnemys(0, 0, 0, 0, true);
+rotatingEnemys er19 = new rotatingEnemys(0, 0, 0, 0, true);

@@ -26,6 +26,9 @@ void draw () {
       play = true;
     }
   } else {
+    if(key == 's'){
+      play = false;
+    }
     edit.playLevel();
   }
 }

@@ -54,8 +54,8 @@ class player {
     //}
 
     if ((a1 == color(0, 0, 255) || a2 == color(0, 0, 255) || a3 == color(0, 0, 255) || a4 == color(0, 0, 255)) || (a5 == color(0, 0, 255) || a6 == color(0, 0, 255) || a7 == color(0, 0, 255) || a8 == color(0, 0, 255))) {
-      this.x = px;
-      this.y = py;
+      this.x = px * 25;
+      this.y = py * 25;
     }
 
     //if (a3 == color(0, 255, 119) || a2 == color(0, 255, 119) || a4 == color(0, 255, 119) || a1 == color(0, 255, 119)) {
@@ -224,7 +224,7 @@ class enemyu {
   float speeds = 2, Sy, y, x, Dy, speed;
   boolean i;
   enemyu(float x, float y, float y0, boolean i) {
-    float speedr = 1;
+    float speedr = 2;
     this.Sy = (y * 25);
     this.y = this.Sy;
     this.x = (x * 25);
@@ -262,5 +262,103 @@ class enemyu {
     stroke(0, 0, 0);
     noStroke();
     ellipse(x, this.y, 15, 15);
+  }
+}
+
+class rotatingEnemys {
+  private int x, y, amount, speed, spacing, isCenter;
+  boolean cross;
+
+  private float rotatary_dude;
+  private float rotatary_dudei;
+
+  //rotatingEnemys(int xd, int yd, int amountd, int speedd, int spacingd, boolean crossd, int isCenterd) {
+  //  x = xd;
+  //  y = yd;
+  //  amount = amountd;
+  //  speed = speedd;
+  //  spacing = spacingd;
+  //  cross = crossd;
+  //  isCenter = isCenterd;
+  //  rotatary_dude = 0;
+  //  rotatary_dudei = 0;
+  //}
+
+  rotatingEnemys(float xd, float yd, float yd2, float spacingd) {
+    x = int(xd);
+    y = int(yd);
+    amount = int((yd2 / 25) - (yd / 25));
+    speed = 0;
+    spacing = int(spacingd);
+    cross = true;
+    isCenter = 0;
+    rotatary_dude = 0;
+    rotatary_dudei = 0;
+  }
+
+  rotatingEnemys(float xd, float yd, float yd2, float spacingd, boolean crossd) {
+    x = int(xd);
+    y = int(yd);
+    amount = int((yd2 / 25) - (yd / 25));
+    speed = 1;
+    spacing = int(spacingd);
+    cross = crossd;
+    isCenter = 0;
+    rotatary_dude = 0;
+    rotatary_dudei = 0;
+  }
+
+  void normal() {
+    translate(x * 25, y * 25);
+    int p;
+    rotate(rotatary_dude);
+    fill(0, 0, 255);
+    noStroke();
+    p = isCenter;
+
+    for (int i = p; i <= amount; i++) {
+      if (cross) {
+        ellipse(spacing * i, 0, 15, 15);
+        ellipse(-spacing * i, 0, 15, 15);
+        ellipse(0, spacing * i, 15, 15);
+        ellipse(0, -spacing * i, 15, 15);
+      } else {
+        ellipse(spacing * i, 0, 15, 15);
+        ellipse(-spacing * i, 0, 15, 15);
+      }
+    }
+    rotate(-rotatary_dude);
+    rotatary_dude += speed * 0.001;
+    if (rotatary_dude >= TWO_PI) {
+      rotatary_dude = 0;
+    }
+    translate(-(x * 25), -(y * 25));
+  }
+
+  void inverted() {
+    translate(x * 25, y * 25);
+    int p;
+    rotate(rotatary_dudei);
+    fill(0, 0, 255);
+    noStroke();
+    p = isCenter;
+
+    for (int i = p; i <= amount; i++) {
+      if (cross) {
+        ellipse(spacing * i, 0, 15, 15);
+        ellipse(-spacing * i, 0, 15, 15);
+        ellipse(0, spacing * i, 15, 15);
+        ellipse(0, -spacing * i, 15, 15);
+      } else {
+        ellipse(spacing * i, 0, 15, 15);
+        ellipse(-spacing * i, 0, 15, 15);
+      }
+    }
+    rotate(-rotatary_dudei);
+    rotatary_dudei -= speed * 0.001;
+    if (rotatary_dudei >= TWO_PI) {
+      rotatary_dudei = 0;
+    }
+    translate(-(x * 25), -(y * 25));
   }
 }
