@@ -362,3 +362,64 @@ class rotatingEnemys {
     translate(-(x * 25), -(y * 25));
   }
 }
+
+class rectenemy {
+  float x, y, r = 15, speedx = 0, speedy = 0;
+  rectenemy(float xb, float yb) {
+    x = (xb + 0.5) * 25;
+    y = (yb +0.5) * 25;
+  }
+
+  void movement() {
+    color right = get(int(x + r) - 2, int(y));
+    color left = get(int(x - r) + 3, int(y));
+    color top = get(int(x), int(y - r) + 3);
+    color bottom = get(int(x), int(y + r) - 2);
+    if (top == color(0) && right != color(0)) {
+      speedx = 1;
+      speedy = 0;
+    } else if (right == color(0) && bottom != color(0)) {
+      speedy = 1;
+      speedx = 0;
+    } else if (bottom == color(0) && left != color(0)) {
+      speedy = 0;
+      speedx = -1;
+    } else if (left == color(0) && top != color(0)) {
+      speedy = -1;
+      speedx = 0;
+    }
+  }
+
+  void invmovement() {
+    color right = get(int(x + r) - 2, int(y));
+    color left = get(int(x - r) + 3, int(y));
+    color top = get(int(x), int(y - r) + 3);
+    color bottom = get(int(x), int(y + r) - 2);
+    if (top == color(0) && left != color(0)) {
+      speedx = -1;
+      speedy = 0;
+    } else if (left == color(0) && bottom != color(0)) {
+      speedx = 0;
+      speedy = 1;
+    } else if (bottom == color(0) && right != color(0)) {
+      speedx = 1;
+      speedy = 0;
+    } else if (right == color(0) && top != color(0)) {
+      speedx = 0;
+      speedy = -1;
+    }
+    x+=speedx;
+    y+=speedy;
+  }
+
+  void render() {
+    stroke(255, 0, 0);
+    point(int(x + r) - 2, int(y));
+    point(int(x - r) + 3, int(y));
+    point(int(x), int(y - r) + 3);
+    point(int(x), int(y + r) - 2);
+    noStroke();
+    fill(0, 0, 255);
+    ellipse(x, y, r, r);
+  }
+}
