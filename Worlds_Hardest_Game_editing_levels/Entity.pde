@@ -114,6 +114,9 @@ class player {
       enemyxui  = new float[19];
       enemyyui  = new float[19];
       enemyyui2 = new float[19];
+
+      enemypx = new float[51];
+      enemypy = new float[51];
     }
 
     //if ((a1 == color(255, 255, 0) || a2 == color(255, 255, 0) || a3 == color(255, 255, 0) || a4 == color(255, 255, 0))) {
@@ -265,109 +268,11 @@ class enemyu {
   }
 }
 
-class rotatingEnemys {
-  private int x, y, amount, speed, spacing, isCenter;
-  boolean cross;
-
-  private float rotatary_dude;
-  private float rotatary_dudei;
-
-  //rotatingEnemys(int xd, int yd, int amountd, int speedd, int spacingd, boolean crossd, int isCenterd) {
-  //  x = xd;
-  //  y = yd;
-  //  amount = amountd;
-  //  speed = speedd;
-  //  spacing = spacingd;
-  //  cross = crossd;
-  //  isCenter = isCenterd;
-  //  rotatary_dude = 0;
-  //  rotatary_dudei = 0;
-  //}
-
-  rotatingEnemys(float xd, float yd, float yd2, float spacingd) {
-    x = int(xd);
-    y = int(yd);
-    amount = int((yd2 / 25) - (yd / 25));
-    speed = 0;
-    spacing = int(spacingd);
-    cross = true;
-    isCenter = 0;
-    rotatary_dude = 0;
-    rotatary_dudei = 0;
-  }
-
-  rotatingEnemys(float xd, float yd, float yd2, float spacingd, boolean crossd) {
-    x = int(xd);
-    y = int(yd);
-    amount = int((yd2 / 25) - (yd / 25));
-    speed = 1;
-    spacing = int(spacingd);
-    cross = crossd;
-    isCenter = 0;
-    rotatary_dude = 0;
-    rotatary_dudei = 0;
-  }
-
-  void normal() {
-    translate(x * 25, y * 25);
-    int p;
-    rotate(rotatary_dude);
-    fill(0, 0, 255);
-    noStroke();
-    p = isCenter;
-
-    for (int i = p; i <= amount; i++) {
-      if (cross) {
-        ellipse(spacing * i, 0, 15, 15);
-        ellipse(-spacing * i, 0, 15, 15);
-        ellipse(0, spacing * i, 15, 15);
-        ellipse(0, -spacing * i, 15, 15);
-      } else {
-        ellipse(spacing * i, 0, 15, 15);
-        ellipse(-spacing * i, 0, 15, 15);
-      }
-    }
-    rotate(-rotatary_dude);
-    rotatary_dude += speed * 0.001;
-    if (rotatary_dude >= TWO_PI) {
-      rotatary_dude = 0;
-    }
-    translate(-(x * 25), -(y * 25));
-  }
-
-  void inverted() {
-    translate(x * 25, y * 25);
-    int p;
-    rotate(rotatary_dudei);
-    fill(0, 0, 255);
-    noStroke();
-    p = isCenter;
-
-    for (int i = p; i <= amount; i++) {
-      if (cross) {
-        ellipse(spacing * i, 0, 15, 15);
-        ellipse(-spacing * i, 0, 15, 15);
-        ellipse(0, spacing * i, 15, 15);
-        ellipse(0, -spacing * i, 15, 15);
-      } else {
-        ellipse(spacing * i, 0, 15, 15);
-        ellipse(-spacing * i, 0, 15, 15);
-      }
-    }
-    rotate(-rotatary_dudei);
-    rotatary_dudei -= speed * 0.001;
-    if (rotatary_dudei >= TWO_PI) {
-      rotatary_dudei = 0;
-    }
-    translate(-(x * 25), -(y * 25));
-  }
-}
-
 class rectenemy {
   float x, y, r = 15, speedx = 0, speedy = 0;
   rectenemy(float xb, float yb) {
-    x = (xb + 0.5) * 25;
-    y = (yb +0.5) * 25;
+    x = (xb) * 25;
+    y = (yb) * 25;
   }
 
   void movement() {
@@ -388,6 +293,8 @@ class rectenemy {
       speedy = -1;
       speedx = 0;
     }
+    x += speedx;
+    y += speedy;
   }
 
   void invmovement() {
@@ -408,16 +315,16 @@ class rectenemy {
       speedx = 0;
       speedy = -1;
     }
-    x+=speedx;
-    y+=speedy;
+    x += speedx;
+    y += speedy;
   }
 
   void render() {
     stroke(255, 0, 0);
-    point(int(x + r) - 2, int(y));
-    point(int(x - r) + 3, int(y));
-    point(int(x), int(y - r) + 3);
-    point(int(x), int(y + r) - 2);
+    //point(int(x + r) - 2, int(y));
+    //point(int(x - r) + 3, int(y));
+    //point(int(x), int(y - r) + 3);
+    //point(int(x), int(y + r) - 2);
     noStroke();
     fill(0, 0, 255);
     ellipse(x, y, r, r);
